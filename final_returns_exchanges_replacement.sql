@@ -64,7 +64,7 @@ SELECT
     a.email, a.cancelled_at, a.order_number, b.order_name, a.created_at_time, a.created_date, a.week_ended, a.month_ended, a.gross_sales, a.discount,
     a.disc_equals_gross, a.variant_title, a.product_type, a.product_sub_type, a.quantity, a.status, a.sku, a.design_name, a.size, a.plant,
     a.country, a.shape, a.texture, a.purpose, a.discount_code, a.order_id, a.line_id, a.line_order_id, a.component_sku_id, a.intended_line_item_id,
-    a.row_num_component, a.row_num_item, a.row_num_variant, a.fulfillment_date, a.fulfillment_week_ended,
+    a.row_num_component, a.row_num_item, a.row_num_variant, a.fulfillment_date, a.fulfillment_week_ended, a.fulfillment_month_ended,
     COALESCE(a.return_created_date::DATE, b.created_at::DATE) return_created_date,
 --     a.return_received_date,
     CASE
@@ -96,3 +96,11 @@ LEFT JOIN all_returns_exchange b
     ON a.order_number = TRIM(REPLACE(b.order_name, '#', ''))
         AND a.sku = b.sku
         AND a.row_num_item = b.row_num_item_loop;
+
+GRANT SELECT ON product_pull.ret_exch_rep_data_final TO james_graham;
+
+SELECT DISTINCT primary_reason FROM product_pull.ret_exch_rep_data_final
+
+SELECT DISTINCT primary_reason, secondary_reason, loop_return_reason_detail FROM product_pull.ret_exch_rep_data_final
+
+SELECT DISTINCT loop_return_reason_detail FROM product_pull.ret_exch_rep_data_final WHERE secondary_reason ILIKE '%unauth%'
