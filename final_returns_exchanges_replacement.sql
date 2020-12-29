@@ -61,7 +61,7 @@ ON d.__sdc_primary_key = e2._sdc_source_key___sdc_primary_key;
 DROP TABLE IF EXISTS product_pull.ret_exch_rep_data_final;
 CREATE TABLE product_pull.ret_exch_rep_data_final AS
 SELECT
-    a.email, a.cancelled_at, a.order_number, b.order_name, a.created_at_time, a.created_date, a.week_ended, a.month_ended, a.gross_sales, a.discount,
+    a.email, a.cancelled_at, a.order_number, b.order_name, a.created_at_time, a.created_date, a.created_week_ended, a.created_month_ended, a.gross_sales, a.discount,
     a.disc_equals_gross, a.variant_title, a.product_type, a.product_sub_type, a.quantity, a.status, a.sku, a.design_name, a.size, a.plant,
     a.country, a.shape, a.texture, a.purpose, a.discount_code, a.order_id, a.line_id, a.line_order_id, a.component_sku_id, a.intended_line_item_id,
     a.row_num_component, a.row_num_item, a.row_num_variant, a.fulfillment_date, a.fulfillment_week_ended, a.fulfillment_month_ended,
